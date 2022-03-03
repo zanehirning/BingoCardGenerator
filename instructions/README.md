@@ -34,8 +34,19 @@ Average Score % (Grade)          | 85.53% (B)
     *   Seriously, read it and take notes!
 2.  Create a UML class diagram that describes the starter code as it is given
     *   Put `Phase-0-UML` in this file's name
-    *   Do not include the Unit tests in the diagram
-    *   Files that don't define classes should *not* appear in the diagram (e.g. `src/bingo.py`)
+    *   **Do not** include these features
+        *   Unit tests (this includes the file `src/runTests.py`)
+        *   Files that don't define classes (e.g. `src/bingo.py`)
+        *   Local variables used inside of methods
+        *   The `self` parameter that is *always* passed to every method (it just takes up space on your diagram)
+    *   **Do** include these features
+        *   Class initializers (a.k.a. constructors)
+            *   You can call this `__init__` or name it for the class (preferred)
+        *   Dunders (BTW these have public visibility, mark with `+`)
+        *   Methods that have already been written for you
+        *   Methods that are not yet implemented (i.e. contain only the `pass` statement)
+        *   Data members (variables whose names begin with `self.`)
+        *   Class static data members (e.g. `Card.COLUMN_NAMES`)
     *   Write phases 0 and 1 of the Software Development Plan in tandem with this draft of the UML class diagram
     *   The diagram should match the starter code as well as your plan up to this point
     *   At this stage your UML class diagram does not need to use *all* of the UML concepts explained in class
@@ -60,8 +71,8 @@ Average Score % (Grade)          | 85.53% (B)
 2.  Create a new UML class diagram when you begin phase 2 of the Software Development Plan
     *   Put `Phase-2-UML` in this file's name
     *   You are not limited to using only what is provided in the starter code
-        *   You may devise new classes, methods and data members to satisfy the customer's requirements
-    *   Include these new components in this draft of the UML class diagram
+        *   You may devise new classes, methods and data members to satisfy the customer's requirements; include these new components on this draft
+        *   You may also choose to remove elements from the design I provided; that's fine as long as it is **documented**
 3.  Review the design phase UML diagrams of at least **two** study buddies
     *   Write a **250-word** peer review for each study buddy
     *   Save a copy of your reviews in `doc/Reviews.md`
