@@ -2,9 +2,9 @@
 
 | Date        | Time Spent | Events  	         	  
 |-------------|------------|--------------------  	         	  
-| Nocember 20 | 1 hour     | Wrote requirements specification and system analysis  	         	  
-| Nocember 21 | 45 minutes | Wrote system design; revised requirements and system analysis  	         	  
-| Nocember 22 | 1 hour     | Prototyped drawing a rectangle with turtle; revised software plan  	         	  
+| March 12 | 1.5 hour     | Worked on Phase-0-UML and plan 	         	  
+| March 13 | 1 hour | Finished Phase-2-UML and worked on design phase	         	  
+| March 14 | 1.25 hour     | Finished design phase and peer-reviewed one student's UML	         	  
 | Nocember 23 | 2.5 hours  | Initial implementation; main menu and prompts done; turtle draws a few shapes but ultimately "walks" off the screen  	         	  
 | Nocember 24 | 0          | Weekend - no work  	         	  
 | Nocember 25 | 0          | Weekend - no work  	         	  

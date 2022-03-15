@@ -1,28 +1,61 @@
 # Software Development Plan
-
-## Phase 0: Requirements Specification *(10%)*
+ 
 
 **Deliver:**
 
-*   A detailed written description of the problem this program aims to solve.
-*   Describe what a *good* solution looks like.
-    *   List what you already know how to do.
-    *   Point out any challenges that you can foresee.
+###What the program aims to solve:
+* This program aims to make Bingo cards that can be anywhere from a 3x3 to 16x16.
+* The Bingo cards increase in value from columns left to right.
+* They can be stored into a deck and also stored onto a file.
+* A good solution will not crash when bad input is given, nor will it have repeating numbers.
+* If the nxn card is odd (i.e. 3x3, 7x7, etc.) then the middle spot will be a "Free" spot.
+
+###What I already know:
+* How to make a range of numbers
+* How to take input from the user and manipulate that input
+
+###What I don't know:
+* How to format the Bingo cards and place the numbers in correct spots
+* How to take the output and store it into a file
 
 
 ## Phase 1: System Analysis *(10%)*
 
 **Deliver:**
 
-*   List all of the data that is used by the program, making note of where it comes from.
-*   Explain what form the output will take.
-*   Describe what algorithms and formulae will be used (but don't write them yet).
+* Input will be provided by the user via the REPL.
+* It will ask if the user wants to create a deck, then to print the card, save, display the whole deck, or exit.
+* The output will take form depending on what the user wants. Whether this is to print the card, display the deck, etc.
+* This program will use some sort of "file" commands to save the decks, formatting formula, if statements, etc.
 
 
 ## Phase 2: Design *(30%)*
 
 **Deliver:**
 
+```
+class Card():
+    This class will create a Bingo card
+    It will intialize an ID number for the Bingo card
+    It can provide the length of the Bingo card, what numbers are in certain spots, and return a formatted Bingo card.
+    
+class Deck():
+    This class will create a deck that stores Bingo cards from the Card class
+    It can provide how many cards are in the deck, retrieve a certain card from the deck, and display the entire deck.
+    
+class UserInterface():
+    The UserInterface class will take input from the user and use that input to perform different tasks.
+    These tasks include printing the card, saving the deck, displaying a whole deck, or exitting.
+    It will take input and prompt the user to provide valid input, as well as including a range for the user to give valid input.
+    If bad input is given, nothing will happen, but the prompt will be reprinted as well as some sort of error message.
+    
+class RandNumberSet():
+    This class is almost finished, however there is a bug that causes numbers to repeat themselves sometimes.
+    This bug will need to be located and fixed.
+
+The rest of the classes are already complete and I do not plan on changing them much (or at all), unless I need to.
+
+```    
 *   Function signatures that include:
     *   Descriptive names.
     *   Parameter lists.
@@ -37,6 +70,45 @@
 
 **Deliver:**
 
+```python
+
+class Card():  	         	  
+    COLUMN_NAMES = list("BINGODARLYZEMPUX")  	         	  
+
+    def __init__(self, idnum, ns):  	         	  
+        """  	         	  
+        Initialize a Bingo! card  	         	  
+        """  	         	  
+        pass  	         	  
+
+    def id(self):  	         	  
+        """  	         	  
+        Return an integer: the ID number of the card  	         	  
+        """  	         	  
+        pass  	         	  
+
+    def number_at(self, row, col):  	         	  
+        """  	         	  
+        Return an integer or a string: the value in the Bingo square at (row, col)  	         	  
+        """  	         	  
+        pass  	         	  
+
+    def __len__(self):  	         	  
+        """  	         	  
+        Return an integer: the length of one dimension of the card.  	         	  
+        For a 3x3 card return 3, for a 5x5 return 5, etc.  	         	  
+        """  	         	  
+        pass  	         	  
+
+    def __str__(self):  	         	  
+        """  	         	  
+        Return a string: a neatly formatted, square bingo card  	         	  
+        """  	         	  
+        pass  	         	  
+
+    
+
+``` 
 *   (More or less) working code.
 *   Note any relevant and interesting events that happened while you wrote the code.
     *   e.g. things you learned, things that didn't go according to plan
