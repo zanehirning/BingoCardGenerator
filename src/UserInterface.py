@@ -29,7 +29,7 @@ class UserInterface():
         while True:  	         	  
             command = self.__m_menu.prompt()  	         	  
             if command.upper() == "C":  	         	  
-                self.__create_deck()  	         	  
+                self.__create_deck()
             elif command.upper() == "X":  	         	  
                 break  	         	  
 
@@ -71,7 +71,7 @@ class UserInterface():
 
         Take a prompt string, low and high integers as input  	         	  
         Repeat the prompt until an integer that is in-range is provided  	         	  
-        """  	         	  
+        """
         pass  	         	  
 
     def __create_deck(self):  	         	  
@@ -79,21 +79,66 @@ class UserInterface():
         Return None: Create a new Deck  	         	  
 
         The Deck is stored in self.__m_currentDeck  	         	  
-        """  	         	  
-        pass  	         	  
+        """
+
+        cardSizeInput = False
+        while cardSizeInput == False:
+            cardSize = input("Enter card size [3 - 16]: ")
+            if cardSize.isdigit() == True:
+                self.N = int(cardSize)
+                if 3 <= self.N <= 16:
+                    cardSizeInput = True
+            else:
+                continue
+
+        maxNumInput = False
+        while maxNumInput == False:
+            self.maxNum = input(f"Enter max number [{(2 * self.N * self.N)} - {floor(3.9 * self.N * self.N)}]: ")
+            if self.maxNum.isdigit() == True:
+                if (2 * self.N * self.N) <= int(self.maxNum) <= floor(3.9 * self.N * self.N):
+                    maxNumInput = True
+            else:
+                continue
+
+        numCardsInput = False
+        while numCardsInput == False:
+            self.numCards = input("Enter number of cards [2 - 8192]: ")
+            if self.numCards.isdigit() == True:
+                if 2 <= int(self.numCards) <= 8192:
+                    numCardsInput = True
+            else:
+                continue
+
+        self.__m_currentDeck = Deck.Deck(self.N, self.numCards, self.maxNum)
+        return self.__deck_menu()
+
+
 
     def __print_card(self):  	         	  
         """  	         	  
         Return None: Print one Card from the Deck  	         	  
 
         Prompt user for a Card ID  	         	  
-        """  	         	  
-        pass  	         	  
-
+        """
+        validInput = False
+        while validInput == False:
+            cardID = input(f"ID of card to print [1 - {self.numCards}]: ")
+            if cardID.isdigit() == True:
+                if 1 <= int(cardID) <= int(self.numCards):
+                    print(Deck.Card(cardID, 0))
+                    validInput = True
+            else:
+                continue
     def __save_deck(self):  	         	  
         """  	         	  
         Return None: Save a Deck to a file  	         	  
 
         Prompt user for the name of file to write the entire Deck into  	         	  
-        """  	         	  
+        """
+        fileName = input("Enter output file name: ")
+        with open(fileName, 'x') as file:
+            file.write(self.__m_currentDeck)
+            print(f"Deck saved to '{fileName}'!")
+        file.close()
+
         pass  	         	  

@@ -1,16 +1,15 @@
 class Card():  	         	  
-    COLUMN_NAMES = list("BINGODARLYZEMPUX")  	         	  
-
+    COLUMN_NAMES = list("BINGODARLYZEMPUX")
     def __init__(self, idnum, ns):  	         	  
         """  	         	  
         Initialize a Bingo! card  	         	  
-        """  	         	  
+        """
         pass  	         	  
 
     def id(self):  	         	  
         """  	         	  
         Return an integer: the ID number of the card  	         	  
-        """  	         	  
+        """
         pass  	         	  
 
     def number_at(self, row, col):  	         	  
@@ -29,5 +28,6 @@ class Card():
     def __str__(self):  	         	  
         """  	         	  
         Return a string: a neatly formatted, square bingo card  	         	  
-        """  	         	  
+        """
+
         pass  	         	  
