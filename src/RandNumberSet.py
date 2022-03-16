@@ -44,7 +44,7 @@ class RandNumberSet():
             if segment <= remainder:  	         	  
                 high += 1  	         	  
             # XXX: I can never remember; is the endpoint of `range()` included or excluded?  	         	  
-            segments.append(list(range(low, high + 1)))  	         	  
+            segments.append(list(range(low, high)))
             low = high  	         	  
         self.segments = segments  	         	  
 

@@ -88,7 +88,11 @@ class UserInterface():
                 self.N = int(cardSize)
                 if 3 <= self.N <= 16:
                     cardSizeInput = True
+                else:
+                    print(f"\nPlease provide an input [3 - 16]: ")
+                    continue
             else:
+                print(f"\nPlease provide an input [3 - 16]: ")
                 continue
 
         maxNumInput = False
@@ -97,7 +101,11 @@ class UserInterface():
             if self.maxNum.isdigit() == True:
                 if (2 * self.N * self.N) <= int(self.maxNum) <= floor(3.9 * self.N * self.N):
                     maxNumInput = True
+                else:
+                    print(f"\nPlease provide an input [{(2 * self.N * self.N)} - {floor(3.9 * self.N * self.N)}]: ")
+                    continue
             else:
+                print(f"\nPlease provide an input [{(2 * self.N * self.N)} - {floor(3.9 * self.N * self.N)}]: ")
                 continue
 
         numCardsInput = False
@@ -106,7 +114,11 @@ class UserInterface():
             if self.numCards.isdigit() == True:
                 if 2 <= int(self.numCards) <= 8192:
                     numCardsInput = True
+                else:
+                    print(f"\nPlease provide an input [2 - 8192]: ")
+                    continue
             else:
+                print(f"\nPlease provide an input [2 - 8192]: ")
                 continue
 
         self.__m_currentDeck = Deck.Deck(self.N, self.numCards, self.maxNum)
@@ -118,25 +130,38 @@ class UserInterface():
 
         Prompt user for a Card ID  	         	  
         """
+
         validInput = False
         while validInput == False:
             cardID = input(f"ID of card to print [1 - {self.numCards}]: ")
             if cardID.isdigit() == True:
                 if 1 <= int(cardID) <= int(self.numCards):
-                    print()
+                    print(0)
                     validInput = True
+                else:
+                    print(f"\nPlease provide an input [1 - {self.numCards}]: ")
+                    continue
             else:
+                print(f"\nPlease provide an input [1 - {self.numCards}]: ")
                 continue
+        pass
+
+
     def __save_deck(self):
         """  	         	  
         Return None: Save a Deck to a file  	         	  
 
         Prompt user for the name of file to write the entire Deck into  	         	  
         """
-        fileName = input("Enter output file name: ")
-        with open(fileName, 'x') as file:
-            file.write(self.__m_currentDeck)
-            print(f"Deck saved to '{fileName}'!")
-        file.close()
-
+        validInput = False
+        while validInput == False:
+            fileName = input("Enter output file name: ")
+            if fileName != '':
+                with open(fileName, 'x') as file:
+                    file.write(self.__m_currentDeck)
+                    print(f"Deck saved to '{fileName}'!")
+                    validInput = True
+                file.close()
+            else:
+                print("Please provide a valid file name.\n")
         pass

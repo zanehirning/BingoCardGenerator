@@ -10,11 +10,10 @@ class Deck():
         self.card_size = card_size
         self.num_cards = num_cards
         self.max_num = max_num
-        self.idnum = 0
+        self.idnum = 1
         while int(num_cards) <= self.idnum:
-            self.idnum+=1
-            Card(self.idnum, RandNumberSet(self.card_size, self.max_num))
-
+            Card(self.idnum, RandNumberSet(self.card_size, self.max_num).shuffle())
+            self.idnum += 1
         pass  	         	  
 
     def __len__(self):  	         	  
@@ -29,12 +28,12 @@ class Deck():
         Retrieve Card N from the deck  	         	  
         """
         self.n = n
-        return Deck.card(self.n)
+        return Card(self.n, RandNumberSet(self.card_size, self.max_num))
         pass  	         	  
 
     def __str__(self):  	         	  
         """  	         	  
         Return None: Display the entire Deck as a string  	         	  
         """
-        print("fadhslf")
+        print(Deck)
         pass  	         	  
