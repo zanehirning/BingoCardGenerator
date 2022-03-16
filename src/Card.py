@@ -4,13 +4,16 @@ class Card():
         """  	         	  
         Initialize a Bingo! card  	         	  
         """
-        pass  	         	  
+        self.__idnum = idnum
+        self.__ns = ns
+        pass
 
-    def id(self):  	         	  
+    def id(self):
         """  	         	  
         Return an integer: the ID number of the card  	         	  
         """
-        pass  	         	  
+        return self.__idnum
+        pass
 
     def number_at(self, row, col):  	         	  
         """  	         	  

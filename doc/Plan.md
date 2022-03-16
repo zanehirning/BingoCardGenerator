@@ -93,7 +93,9 @@ class Card():
     def number_at(self, row, col):  	         	  
         """  	         	  
         Return an integer or a string: the value in the Bingo square at (row, col)  	         	  
-        """  	         	  
+        """ 
+        self.row = row
+        self.col = col
         pass  	         	  
 
     def __len__(self):  	         	  
@@ -228,6 +230,7 @@ class UserInterface():
 
         The Deck is stored in self.__m_currentDeck  	         	  
         """
+        #This will need error checking in the implementation phase
         cardSize = input("Enter card size [3 - 16]: ")
         N = int(cardSize)
         maxNum = input(f"Enter max number [{(2 * N * N)} - {floor(3.9 * N * N)}")
@@ -251,13 +254,12 @@ class UserInterface():
             else:
                 continue    	  
 
-    def __save_deck(self):  	         	  
-        """  	         	  
-        Return None: Save a Deck to a file  	         	  
-
-        Prompt user for the name of file to write the entire Deck into  	         	  
-        """  	         	  
-        pass  	         	  
+    def __save_deck(self):  	         	 
+        fileName = input("Enter output file name: ")
+        with open(fileName, 'x') as file:
+            file.write(self.__m_currentDeck)
+            print(f"Deck saved to '{fileName}'!")
+        file.close()	         	  
 
 #RandNumberSet
 import random  	         	  

@@ -15,22 +15,27 @@ The entire UML is organized and well put together, therefore, I would say that y
 
 ------------------------------------------------------------
 
-### YOUR NAME
-### NAME OF STUDENT YOU REVIEWED
+### Zane Hirning
+### Ashton Carlson
+
+For the most part, this UML diagram is very easy to follow and well written. All the classes that were required to be added were there, and all of the associations are easy to follow and correct (to my understanding). There is one association I would add, however, this association would be between the menu and the UserInterface class. They directly use and build off of each other. Some classes are italicized, while the others are not, I would make that consistent throughout your UML, unless you have a reason for that. Your UML contains all the data members and other variables it needs, along with their corresponding types (Boolean, string, integer, etc.). I like that the association arrows all have *how* the associations work (“Used by”). This is very helpful in organizing the UML and creating a clear understanding of the program, and how it is meant to function/ will function.
+This UML is very structured and contains a good format, this would have a good effect if someone (a customer) were to read this expecting to get some insight on how the program would work. If a simple understanding of Bingo cards is achieved by the customer, they would be able tell how the program would work. Along with the customer, it would be even more helpful if working on a team of developers. This being said, your UML diagram is very helpful and well put together, it should assist you while continuing the design of your program.
+
 
 *Remember that your review must be >= 250 words*
 
 ------------------------------------------------------------
 
 # Reviews You Received
-
-Looking at your UML I do think you have all of the class names correct other than you should take off the .py and you even remembered to italicize UserInterface. You are also missing class menu and menu options. I believe these were written for you but they said in class that you must also include them in the UML. I also notice with the format with your class boxes they need to be 3 boxes, the top box has the class name, the second has the variable names, and the last one has the methods. Your arrows I believe should be pointing the other way. The arrow should be pointing to what called/created them. I do notice you used one description “stored in” but you should probably add more. There are also different meanings between solid and dotted lines for the arrows that we went over in class. So, you should make sure that you are using the correct ones.
-    Your variable section/__init__ section should only have the variables and their type such as “nSize : int”; you do not need any description for the variables. For the methods section, all the methods should be in one box and usually shouldn’t be more than one line. You just need to declare the method name, include its parameters, and then add what return type. The output should look like “-get_str(prompt) : str”. You do not need to describe what the method does. Some methods are also missing a “+” or ”-” like shuffle. 
+ 
 
 *Put the reviews your study buddies wrote about your design here*
 
 ### Review from Beau Martin
 
-### Review from [Student Name]
+ Looking at your UML I do think you have all of the class names correct other than you should take off the .py and you even remembered to italicize UserInterface. You are also missing class menu and menu options. I believe these were written for you but they said in class that you must also include them in the UML. I also notice with the format with your class boxes they need to be 3 boxes, the top box has the class name, the second has the variable names, and the last one has the methods. Your arrows I believe should be pointing the other way. The arrow should be pointing to what called/created them. I do notice you used one description “stored in” but you should probably add more. There are also different meanings between solid and dotted lines for the arrows that we went over in class. So, you should make sure that you are using the correct ones.
+    Your variable section/__init__ section should only have the variables and their type suc as “nSize : int”; you do not need any description for the variables. For the methods section, all the methods should be in one box and usually shouldn’t be more than one line. You just need to declare the method name, include its parameters, and then add what return type. The output should look like “-get_str(prompt) : str”. You do not need to describe what the method does. Some methods are also missing a “+” or ”-” like shuffle. 
+
+### Review from Ashton Carlson
 
 *You are welcome to add more to both sections if you reviewed more than 2 students, but 2 students is the minimum*
