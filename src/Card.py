@@ -7,14 +7,18 @@ class Card():
         """
         self.__idnum = idnum
         self.__ns = ns
-        #self.card = [self.__ns]
-        #checkOdd = len(self.__ns) % 2
-#
+        checkOdd = len(self.__ns) % 2
+        self.colNames = Card.COLUMN_NAMES[0:len(self.__ns)]
+        self.row = self.__ns[0:len(self.__ns)]
+        print('     '.join(self.colNames))
+
         #if checkOdd != 0:
-        #    midRow = len(self.__ns) // (len(self.__ns) / 2)
-        #    midCol = len(self.__ns) // (len(self.__ns) / 2)
-        #    self.card.insert([int(midRow)][int(midCol)], "Free!")
+        #    midRow = (len(self.__ns) // (len(self.__ns) / 2)) - 1
+        #    midCol = (len(self.__ns) // (len(self.__ns) / 2)) - 1
+        #    self.__ns[int(midRow)][int(midCol)] = "Free!"
         #else:
+        #    print(self.__ns)
+
 
 
     def id(self):
@@ -28,9 +32,9 @@ class Card():
         """  	         	  
         Return an integer or a string: the value in the Bingo square at (row, col)  	         	  
         """
-        #self.row = row
-        #self.col = col
-        #return self.card[row][col]
+        self.row = row
+        self.col = col
+        return self.__ns[row][col]
         pass
 
     def __len__(self):
@@ -45,4 +49,7 @@ class Card():
         """  	         	  
         Return a string: a neatly formatted, square bingo card  	         	  
         """
+        card = ''
+        card += print('     '.join(self.colNames))
+        return "fadslfjksa"
         pass

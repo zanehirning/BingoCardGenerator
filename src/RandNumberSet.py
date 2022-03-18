@@ -29,7 +29,7 @@ class RandNumberSet():
             self.__m_nSize = RandNumberSet.MAX_SIZE  	         	  
 
         # sanity check on __m_nMax: pick the larger of `nMax` or `nSize^2 * 2`  	         	  
-        self.__m_nMax = max(nMax, self.__m_nSize * self.__m_nSize * 2)  	         	  
+        self.__m_nMax = max(nMax, self.__m_nSize * self.__m_nSize * 2)
         self.__m_nRowPos = 0  	         	  
 
         segments = []  	         	  

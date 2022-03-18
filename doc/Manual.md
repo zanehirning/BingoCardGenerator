@@ -1,3 +1,4 @@
 # Bingo! User Manual  	         	  
+This program will gather input from the user from a simple UI. This program can make Bingo cards in any size from 3x3 to 16x16 dependent upon what size the user wants. The program will give the user a range of numbers based on the size of the card as well as the amount of cards in a Bingo deck (anywhere from 2 - 8192). The program will utilize these inputs and create a Bingo card that does not repeat numbers, and increase numbers in size from left to right. Upon creating the Bingo card and deck, the user can the either print the card, display the deck, save the deck to a file (name of their choosing), or exit the program.
+Bingo Cards program aims generate Bingo cards and store them for accessibility purposes, this way they can be reused for whatever the user may need them for.
 
-**TODO: Write instructions that a non-technical end-user can understand and follow without going into detail about the inner workings of the program.**

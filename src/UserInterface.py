@@ -1,6 +1,6 @@
 from math import floor
 
-import Deck
+from Deck import Deck
 from Menu import Menu
 from MenuOption import MenuOption
 
@@ -80,7 +80,6 @@ class UserInterface():
 
         The Deck is stored in self.__m_currentDeck  	         	  
         """
-
         cardSizeInput = False
         while cardSizeInput == False:
             cardSize = input("Enter card size [3 - 16]: ")
@@ -121,7 +120,7 @@ class UserInterface():
                 print(f"\nPlease provide an input [2 - 8192]: ")
                 continue
 
-        self.__m_currentDeck = Deck.Deck(self.N, self.numCards, self.maxNum)
+        self.__m_currentDeck = Deck(self.N, self.numCards, self.maxNum)
         return self.__deck_menu()
 
     def __print_card(self):
@@ -136,15 +135,15 @@ class UserInterface():
             cardID = input(f"ID of card to print [1 - {self.numCards}]: ")
             if cardID.isdigit() == True:
                 if 1 <= int(cardID) <= int(self.numCards):
-                    print(0)
                     validInput = True
+                    return Deck(self.N, self.numCards, self.maxNum).card(cardID)
                 else:
                     print(f"\nPlease provide an input [1 - {self.numCards}]: ")
                     continue
             else:
                 print(f"\nPlease provide an input [1 - {self.numCards}]: ")
                 continue
-        pass
+
 
 
     def __save_deck(self):
