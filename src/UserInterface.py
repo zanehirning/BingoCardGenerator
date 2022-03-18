@@ -120,7 +120,7 @@ class UserInterface():
                 print(f"\nPlease provide an input [2 - 8192]: ")
                 continue
 
-        self.__m_currentDeck = Deck(self.N, self.numCards, self.maxNum)
+        self.__m_currentDeck = Deck(self.N, self.numCards, self.maxNum).__str__()
         return self.__deck_menu()
 
     def __print_card(self):

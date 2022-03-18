@@ -10,14 +10,36 @@ class Card():
         checkOdd = len(self.__ns) % 2
         self.colNames = Card.COLUMN_NAMES[0:len(self.__ns)]
         self.row = self.__ns[0:len(self.__ns)]
-        print('     '.join(self.colNames))
+
+        header = '   '
+        card = ''
+        spaces = ''
+        header += '     '.join(self.colNames) + '\n'
+        colVal = 0
+        rowComplete = False
+        while rowComplete == False:
+            spaces += "\n"
+            card += "|"
+            while colVal < len(self.__ns):
+                header += "+-----"
+                spaces += "+-----"
+                card += '  ' + f'{self.__ns[colVal]}' + '  |'
+                colVal += 1
+            rowComplete = True
+        spaces += "+"
+        header += "+"
+        card += spaces
+        #print(header)
+        print(card)
 
         #if checkOdd != 0:
-        #    midRow = (len(self.__ns) // (len(self.__ns) / 2)) - 1
-        #    midCol = (len(self.__ns) // (len(self.__ns) / 2)) - 1
+        #    midRow = (len(self.__ns) // (len(self.__ns) / 2))
+        #    midCol = (len(self.__ns) // (len(self.__ns) / 2))
         #    self.__ns[int(midRow)][int(midCol)] = "Free!"
+        #    self.__idnum += 1
         #else:
         #    print(self.__ns)
+        #    self.__idnum += 1
 
 
 
@@ -43,13 +65,29 @@ class Card():
         For a 3x3 card return 3, for a 5x5 return 5, etc.  	         	  
         """
         return len(self.__ns)
-        pass
 
     def __str__(self):
         """  	         	  
         Return a string: a neatly formatted, square bingo card  	         	  
         """
-        card = ''
-        card += print('     '.join(self.colNames))
-        return "fadslfjksa"
-        pass
+        completeCard = ''
+        card = '   '
+        spaces = ''
+        card += '     '.join(self.colNames) + '\n'
+        spaces += "\n+-----"
+        spaces += "+\n"
+        n = 0
+        colVal = 0
+        rowComplete = False
+        while rowComplete == False:
+            spaces += "\n+-----"
+            card += spaces
+            card += "|"
+            while n < len(self.__ns):
+                card += '  ' + f'{self.__ns[colVal]}' + '  |'
+                colVal += 1
+                n += 1
+            rowComplete = True
+        card += spaces
+        print(card)
+    pass

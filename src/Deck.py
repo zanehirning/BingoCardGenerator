@@ -37,7 +37,7 @@ class Deck():
         Retrieve Card N from the deck  	         	  
         """
         self.n = int(n)
-        #return Card(self.n, self.RNS)
+        return Card(self.n, self.c)
 
 
     def __str__(self):  	         	  
@@ -45,8 +45,10 @@ class Deck():
         Return None: Display the entire Deck as a string  	         	  
         """
         output = ""
-        while self.idnum <= int(self.num_cards):
-            c = str(Card(self.idnum, self.c))
-            output += c
+        #while self.idnum <= int(self.num_cards):
+        #    c = str(Card(self.idnum, self.c))
+        #    output += c
+        #    print(c)
+        #    self.idnum += 1
         return output
         pass  	         	  
