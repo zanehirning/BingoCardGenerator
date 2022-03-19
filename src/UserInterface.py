@@ -50,36 +50,13 @@ class UserInterface():
             if command.upper() == "P":
                 self.__print_card()
             elif command.upper() == "D":
-                print(self.__m_currentDeck)
+                self.__m_currentDeck.__str__()
             elif command.upper() == "S":
                 self.__save_deck()
             elif command.upper() == "X":
                 break
 
-    def __get_str(self, prompt):
-        """  	         	  
-        Return a string: non-empty input entered by the user  	         	  
-
-        Take a prompt string as input  	         	  
-        Repeat the prompt until a non-empty string is provided  	         	  
-        """
-        pass
-
-    def __get_int(self, prompt, lo, hi):
-        """  	         	  
-        Return an integer: validated integer input by user  	         	  
-
-        Take a prompt string, low and high integers as input  	         	  
-        Repeat the prompt until an integer that is in-range is provided  	         	  
-        """
-        pass
-
     def __create_deck(self):
-        """  	         	  
-        Return None: Create a new Deck  	         	  
-
-        The Deck is stored in self.__m_currentDeck  	         	  
-        """
         cardSizeInput = False
         while cardSizeInput == False:
             cardSize = input("Enter card size [3 - 16]: ")
@@ -120,15 +97,10 @@ class UserInterface():
                 print(f"\nPlease provide an input [2 - 8192]: ")
                 continue
 
-        self.__m_currentDeck = Deck(self.N, self.numCards, self.maxNum).__str__()
+        self.__m_currentDeck = Deck(self.N, self.numCards, self.maxNum)
         return self.__deck_menu()
 
     def __print_card(self):
-        """  	         	  
-        Return None: Print one Card from the Deck  	         	  
-
-        Prompt user for a Card ID  	         	  
-        """
 
         validInput = False
         while validInput == False:
@@ -136,7 +108,7 @@ class UserInterface():
             if cardID.isdigit() == True:
                 if 1 <= int(cardID) <= int(self.numCards):
                     validInput = True
-                    return Deck(self.N, self.numCards, self.maxNum).card(cardID)
+                    print(self.__m_currentDeck.card(cardID))
                 else:
                     print(f"\nPlease provide an input [1 - {self.numCards}]: ")
                     continue
@@ -147,17 +119,12 @@ class UserInterface():
 
 
     def __save_deck(self):
-        """  	         	  
-        Return None: Save a Deck to a file  	         	  
-
-        Prompt user for the name of file to write the entire Deck into  	         	  
-        """
         validInput = False
         while validInput == False:
             fileName = input("Enter output file name: ")
             if fileName != '':
                 with open(fileName, 'x') as file:
-                    file.write(self.__m_currentDeck)
+                    file.write(str(self.__m_currentDeck))
                     print(f"Deck saved to '{fileName}'!")
                     validInput = True
                 file.close()

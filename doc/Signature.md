@@ -6,8 +6,7 @@
 | March 13 | 1 hour | Finished Phase-2-UML and worked on design phase	         	  
 | March 14 | 1.25 hour     | Finished design phase and peer-reviewed one student's UML	         	  
 | March 15 | 3 hours  | Reviewed my final UML diagram, started implementation	         	  
-| Nocember 24 | 0          | Weekend - no work  	         	  
-| Nocember 25 | 0          | Weekend - no work  	         	  
-| Nocember 26 | 2 hours    | Initial version scrapped; revised software plan; started over with new plan and fixed the "walking off the screen" bug  	         	  
-| Nocember 27 | 1.5 hours  | Test cases devised; fixed a bug uncovered by testing process  	         	  
-| Nocember 28 | 30 minutes | Finished documentation; pushed to GitLab; cloned & re-ran test cases  	         	  
+| March 16 | 2 hours          | Worked on implementation and deciding how I wanted to write the program (what variables to use, etc.) 	         	  
+| March 17 | 2 hours          | Finished implementations and started debugging 	         	  
+| March 18 | 3 hours    | Finished debugging to the best of my abilities, pushing the assignment to gitlab 	         	  
+       	  

@@ -55,16 +55,7 @@ class RandNumberSet():
 
 The rest of the classes are already complete and I do not plan on changing them much (or at all), unless I need to.
 
-```    
-*   Function signatures that include:
-    *   Descriptive names.
-    *   Parameter lists.
-    *   Documentation strings that explain the purpose, inputs and outputs.
-*   Pseudocode that captures how each function works.
-    *   Pseudocode != source code.  Do not paste your finished source code into this part of the plan.
-    *   Explain what happens in the face of good and bad input.
-    *   Write a few specific examples that occurred to you.
-
+```
 
 ## Phase 3: Implementation *(15%)*
 
@@ -72,48 +63,68 @@ The rest of the classes are already complete and I do not plan on changing them 
 
 ```python
 #Card
-class Card():  	         	  
-    COLUMN_NAMES = list("BINGODARLYZEMPUX")  	         	  
+class Card():
+    COLUMN_NAMES = list("BINGODARLYZEMPUX")
 
-    def __init__(self, idnum, ns):  	         	  
+    def __init__(self, idnum, ns):
         """  	         	  
         Initialize a Bingo! card  	         	  
-        """  
+        """
         self.__idnum = idnum
         self.__ns = ns
-        pass  	         	  
 
-    def id(self):  	         	  
+    def id(self):
         """  	         	  
         Return an integer: the ID number of the card  	         	  
-        """  
+        """
         return self.__idnum
-        pass  	         	  
+        pass
 
-    def number_at(self, row, col):  	         	  
+    def number_at(self, row, col):
         """  	         	  
         Return an integer or a string: the value in the Bingo square at (row, col)  	         	  
-        """ 
-        self.row = row
-        self.col = col
-        pass  	         	  
+        """
+        checkOdd = len(self.__ns) % 2
+        if checkOdd != 0:
+            midRow = (len(self.__ns) // 2)
+            if row == midRow and col == midRow:
+                return "Free!"
+        return self.__ns[row][col]
+        pass
 
-    def __len__(self):  	         	  
+    def __len__(self):
         """  	         	  
         Return an integer: the length of one dimension of the card.  	         	  
         For a 3x3 card return 3, for a 5x5 return 5, etc.  	         	  
         """
-        pass  	         	  
+        return len(self.__ns)
 
-    def __str__(self):  	         	  
+    def __str__(self):
         """  	         	  
         Return a string: a neatly formatted, square bingo card  	         	  
-        """  	         	  
-        pass  	         	  
+        """
+        header = '   '
+        self.colNames = Card.COLUMN_NAMES[0:len(self.__ns)]
+        header += '     '.join(self.colNames)
+        card = ''
+        spaces = ''
+        for i in range(len(self.__ns)):
+            spaces += "+-----"
+        spaces += "+\n"
+
+        for r in range(len(self.__ns)):
+            for c in range(len(self.__ns)):
+                card += f"|{self.number_at(r, c) : ^5}"
+            card += "|" + "\n" + spaces
+
+        return header +  "\n" + spaces + card + "\n"
+
 
 #Deck
 from Card import Card  	         	  
 from RandNumberSet import RandNumberSet  	         	  
+from Card import Card  	         	  
+from RandNumberSet import RandNumberSet
 
 
 class Deck():  	         	  
@@ -121,31 +132,40 @@ class Deck():
         """  	         	  
         Deck constructor  	         	  
         """
-        self.card_size = card_size
-        self.num_cards = num_cards
-        self.max_num = max_num
-        pass  	         	  
+        self.card_size = int(card_size)
+        self.num_cards = int(num_cards)
+        self.max_num = int(max_num)
+        self.__deck = []
+        for i in range(self.num_cards):
+            RNS = RandNumberSet(self.card_size, self.max_num)
+            c = Card(i + 1, RNS)
+            self.__deck.append(c)
 
     def __len__(self):  	         	  
         """  	         	  
         Return an integer: the number of cards in this deck  	         	  
         """
         return int(self.num_cards)
-        pass  	         	  
+
 
     def card(self, n):  	         	  
         """  	         	  
         Retrieve Card N from the deck  	         	  
         """
-        idnum = self.__n
-        return Card(idnum, ns)
-        pass  	         	  
+        return self.__deck[int(n)-1]
+
 
     def __str__(self):  	         	  
         """  	         	  
         Return None: Display the entire Deck as a string  	         	  
         """
-        pass
+        output = ""
+        for i in range(self.num_cards):
+            c = str(self.__deck[i])
+            output += c
+        print(output)
+        return output
+
 
 #UserInterface
 from math import floor  	         	  
@@ -155,111 +175,150 @@ from Menu import Menu
 from MenuOption import MenuOption  	         	  
 
 
-class UserInterface():  	         	  
+from math import floor
+
+
+
+class UserInterface():
     """  	         	  
     Provide the UserInterface for the program, which consists of the Main menu and the Deck menu  	         	  
 
     Also provides methods for accepting and validating user input  	         	  
-    """  	         	  
+    """
 
-    def __init__(self):  	         	  
-        self.__m_currentDeck = None  	         	  
-        self.__m_menu = Menu("Main")  	         	  
-        self.__m_menu += MenuOption("C", "Create a new deck")  	         	  
-        self.__m_menu += MenuOption("X", "Exit the program")  	         	  
+    def __init__(self):
+        self.__m_currentDeck = None
+        self.__m_menu = Menu("Main")
+        self.__m_menu += MenuOption("C", "Create a new deck")
+        self.__m_menu += MenuOption("X", "Exit the program")
 
-    def run(self):  	         	  
+    def run(self):
         """  	         	  
         Return None: present the main menu to the user  	         	  
 
         Repeatedly prompt for a valid command until good input is given, or the program is exited  	         	  
-        """  	         	  
-        print("Welcome to the Bingo Deck Generator\n")  	         	  
+        """
+        print("Welcome to the Bingo Deck Generator\n")
 
-        while True:  	         	  
-            command = self.__m_menu.prompt()  	         	  
-            if command.upper() == "C":  	         	  
+        while True:
+            command = self.__m_menu.prompt()
+            if command.upper() == "C":
                 self.__create_deck()
-            elif command.upper() == "X":  	         	  
-                break  	         	  
+            elif command.upper() == "X":
+                break
 
-    def __deck_menu(self):  	         	  
+    def __deck_menu(self):
         """  	         	  
         Return None  	         	  
 
         Present the deck menu to user until a valid selection is chosen  	         	  
-        """  	         	  
-        menu = Menu("Deck")  	         	  
-        menu += MenuOption("P", "Print a card to the screen")  	         	  
-        menu += MenuOption("D", "Display the whole deck to the screen")  	         	  
-        menu += MenuOption("S", "Save the whole deck to a file")  	         	  
-        menu += MenuOption("X", "Return to the Main menu")  	         	  
+        """
+        menu = Menu("Deck")
+        menu += MenuOption("P", "Print a card to the screen")
+        menu += MenuOption("D", "Display the whole deck to the screen")
+        menu += MenuOption("S", "Save the whole deck to a file")
+        menu += MenuOption("X", "Return to the Main menu")
 
-        while True:  	         	  
-            command = menu.prompt()  	         	  
-            if command.upper() == "P":  	         	  
-                self.__print_card()  	         	  
-            elif command.upper() == "D":  	         	  
-                print(self.__m_currentDeck)  	         	  
-            elif command.upper() == "S":  	         	  
-                self.__save_deck()  	         	  
-            elif command.upper() == "X":  	         	  
-                break  	         	  
+        while True:
+            command = menu.prompt()
+            if command.upper() == "P":
+                self.__print_card()
+            elif command.upper() == "D":
+                print(self.__m_currentDeck)
+            elif command.upper() == "S":
+                self.__save_deck()
+            elif command.upper() == "X":
+                break
 
-    def __get_str(self, prompt):  	         	  
-        """  	         	  
-        Return a string: non-empty input entered by the user  	         	  
-
-        Take a prompt string as input  	         	  
-        Repeat the prompt until a non-empty string is provided  	         	  
-        """  	         	  
-        pass  	         	  
-
-    def __get_int(self, prompt, lo, hi):  	         	  
-        """  	         	  
-        Return an integer: validated integer input by user  	         	  
-
-        Take a prompt string, low and high integers as input  	         	  
-        Repeat the prompt until an integer that is in-range is provided  	         	  
-        """  	         	  
-        pass  	         	  
-
-    def __create_deck(self):  	         	  
+    def __create_deck(self):
         """  	         	  
         Return None: Create a new Deck  	         	  
 
         The Deck is stored in self.__m_currentDeck  	         	  
         """
-        #This will need error checking in the implementation phase
-        cardSize = input("Enter card size [3 - 16]: ")
-        N = int(cardSize)
-        maxNum = input(f"Enter max number [{(2 * N * N)} - {floor(3.9 * N * N)}")
-        numCards = input("Enter number of cards [2 - 8192]")
-        self.__m_currentDeck = Deck.Deck(N, numCards, maxNum)
-        return self.__deck_menu         	  
+        cardSizeInput = False
+        while cardSizeInput == False:
+            cardSize = input("Enter card size [3 - 16]: ")
+            if cardSize.isdigit() == True:
+                self.N = int(cardSize)
+                if 3 <= self.N <= 16:
+                    cardSizeInput = True
+                else:
+                    print(f"\nPlease provide an input [3 - 16]: ")
+                    continue
+            else:
+                print(f"\nPlease provide an input [3 - 16]: ")
+                continue
 
-    def __print_card(self):  	         	  
+        maxNumInput = False
+        while maxNumInput == False:
+            self.maxNum = input(f"Enter max number [{(2 * self.N * self.N)} - {floor(3.9 * self.N * self.N)}]: ")
+            if self.maxNum.isdigit() == True:
+                if (2 * self.N * self.N) <= int(self.maxNum) <= floor(3.9 * self.N * self.N):
+                    maxNumInput = True
+                else:
+                    print(f"\nPlease provide an input [{(2 * self.N * self.N)} - {floor(3.9 * self.N * self.N)}]: ")
+                    continue
+            else:
+                print(f"\nPlease provide an input [{(2 * self.N * self.N)} - {floor(3.9 * self.N * self.N)}]: ")
+                continue
+
+        numCardsInput = False
+        while numCardsInput == False:
+            self.numCards = input("Enter number of cards [2 - 8192]: ")
+            if self.numCards.isdigit() == True:
+                if 2 <= int(self.numCards) <= 8192:
+                    numCardsInput = True
+                else:
+                    print(f"\nPlease provide an input [2 - 8192]: ")
+                    continue
+            else:
+                print(f"\nPlease provide an input [2 - 8192]: ")
+                continue
+
+        self.__m_currentDeck = Deck(self.N, self.numCards, self.maxNum).__str__()
+        return self.__deck_menu()
+
+    def __print_card(self):
         """  	         	  
         Return None: Print one Card from the Deck  	         	  
 
         Prompt user for a Card ID  	         	  
         """
+
         validInput = False
         while validInput == False:
             cardID = input(f"ID of card to print [1 - {self.numCards}]: ")
             if cardID.isdigit() == True:
                 if 1 <= int(cardID) <= int(self.numCards):
-                    print(Deck.Card(cardID, 0))
                     validInput = True
+                    return Deck(self.N, self.numCards, self.maxNum).card(cardID)
+                else:
+                    print(f"\nPlease provide an input [1 - {self.numCards}]: ")
+                    continue
             else:
-                continue    	  
+                print(f"\nPlease provide an input [1 - {self.numCards}]: ")
+                continue
 
-    def __save_deck(self):  	         	 
-        fileName = input("Enter output file name: ")
-        with open(fileName, 'x') as file:
-            file.write(self.__m_currentDeck)
-            print(f"Deck saved to '{fileName}'!")
-        file.close()	         	  
+    def __save_deck(self):
+        """  	         	  
+        Return None: Save a Deck to a file  	         	  
+
+        Prompt user for the name of file to write the entire Deck into  	         	  
+        """
+        validInput = False
+        while validInput == False:
+            fileName = input("Enter output file name: ")
+            if fileName != '':
+                with open(fileName, 'x') as file:
+                    file.write(self.__m_currentDeck)
+                    print(f"Deck saved to '{fileName}'!")
+                    validInput = True
+                file.close()
+            else:
+                print("Please provide a valid file name.\n")
+        pass
+         	  
 
 #RandNumberSet
 import random  	         	  
@@ -308,7 +367,7 @@ class RandNumberSet():
             if segment <= remainder:  	         	  
                 high += 1  	         	  
             # XXX: I can never remember; is the endpoint of `range()` included or excluded?  	         	  
-            segments.append(list(range(low, high + 1)))  	         	  
+            segments.append(list(range(low, high)))  	         	  
             low = high  	         	  
         self.segments = segments  	         	  
 
@@ -361,26 +420,29 @@ class RandNumberSet():
             strs.append(str(seg))  	         	  
         return '\n'.join(strs)  	         	  
 
-
 ``` 
-*   (More or less) working code.
-*   Note any relevant and interesting events that happened while you wrote the code.
-    *   e.g. things you learned, things that didn't go according to plan
+- While writing this code, I noticed there were functions that I did not completely understand.
+- These functions included the __str__ and __int__ functions in the UI file.
+- I later learned these were meant for error checking, however, this was after I had already written code that could error check.
+- If I used these functions, perhaps my code would be more concise, and under different circumstances, I would rewrite my program.
+- I also learned that I am not very good at formatting, and I have always struggled with understanding classes. After this assignment though, I feel more confident about using classes and formatting output.
 
 
 ## Phase 4: Testing & Debugging *(30%)*
 
 **Deliver:**
 
-*   A set of test cases that you have personally run on your computer.
-    *   Include a description of what happened for each test case.
-    *   For any bugs discovered, describe their cause and remedy.
-*   Write your test cases in plain language such that a non-coder could run them and replicate your experience.
+- I have ran several tests regarding different card sizes as well as different file names.
+- Each time I tested a different card size, the output matched similar to what I had assumed would happen.
+- Each file name that I tested had worked, except for the few cases that windows does not like. (I believe it was files with ":"?)
+- I discovered many bugs in my code, however, they were not due to a variety of test cases. These mostly stemmed from syntax errors, like when to return something vs printing it.
 
 
 ## Phase 5: Deployment *(5%)*
 
 **Deliver:**
+- My repository was pushed to GitLab, the final commit was present. Prior to pushing, I tested multiple different cases on my program to ensure that it is working correctly and will work on the grader's computer.
+
 
 *   Your repository pushed to GitLab.
 *   **Verify** that your final commit was received by browsing to its project page on GitLab.
@@ -398,16 +460,19 @@ class RandNumberSet():
 
 **Deliver:**
 
-*   Write brief and honest answers to these questions: *(Note: do this before you complete **Phase 5: Deployment**)*
-    *   What parts of your program are sloppily written and hard to understand?
-        *   Are there parts of your program which you aren't quite sure how/why they work?
-        *   If a bug is reported in a few months, how long would it take you to find the cause?
-    *   Will your documentation make sense to...
-        *   ...anybody besides yourself?
-        *   ...yourself in six month's time?
-    *   How easy will it be to add a new feature to this program in a year?
-    *   Will your program continue to work after upgrading...
-        *   ...your computer's hardware?
-        *   ...the operating system?
-        *   ...to the next version of Python?
-*   Fill out the Assignment Reflection on Canvas.
+###1.
+- I would say my code is understandable for the most part. The error checking did get repetitive and may seem to long, but it should be easy to follow. If I had more time, I would have done the error checking in __str__ and __int__
+- Most of my code is pretty understandable from my view, the code makes sense to me and how/why it works seems simple enough.
+- Most of my debugging consisted of debugging after a syntax error, as well as print statement debugging. Syntax errors are easy to find and easy to fix. If a problem were to arise, I feel like I could utilize this method to resolve the bug quickly.
+
+###2.
+- This code should make sense to most people, as long as they understand how the classes function and work together to create the program.
+- This code will make sense to me in six months, this code is fairly well constructed. (in my opinion)
+
+###3.
+- It depends on the implementation. If it is just adding larger cards, etc. it should be easy enough. Everything that can be implemented should be fairly simple and straightforward.
+
+###4.
+- This program should work on new hardware, and would probably work better on new hardware.
+- This program should work on new or different OS's.
+- As long as the next versions don't change how any functions in my program work, it should run on the next version.
