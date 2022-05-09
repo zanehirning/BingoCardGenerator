@@ -57,13 +57,12 @@ class UserInterface():
                 break
 
     def __create_deck(self):
-        cardSizeInput = False
-        while cardSizeInput == False:
+        while True:
             cardSize = input("Enter card size [3 - 16]: ")
             if cardSize.isdigit() == True:
                 self.N = int(cardSize)
                 if 3 <= self.N <= 16:
-                    cardSizeInput = True
+                    return False
                 else:
                     print(f"\nPlease provide an input [3 - 16]: ")
                     continue
@@ -71,12 +70,11 @@ class UserInterface():
                 print(f"\nPlease provide an input [3 - 16]: ")
                 continue
 
-        maxNumInput = False
-        while maxNumInput == False:
+        while True:
             self.maxNum = input(f"Enter max number [{(2 * self.N * self.N)} - {floor(3.9 * self.N * self.N)}]: ")
             if self.maxNum.isdigit() == True:
                 if (2 * self.N * self.N) <= int(self.maxNum) <= floor(3.9 * self.N * self.N):
-                    maxNumInput = True
+                    return False
                 else:
                     print(f"\nPlease provide an input [{(2 * self.N * self.N)} - {floor(3.9 * self.N * self.N)}]: ")
                     continue
@@ -84,12 +82,11 @@ class UserInterface():
                 print(f"\nPlease provide an input [{(2 * self.N * self.N)} - {floor(3.9 * self.N * self.N)}]: ")
                 continue
 
-        numCardsInput = False
-        while numCardsInput == False:
+        while True:
             self.numCards = input("Enter number of cards [2 - 8192]: ")
             if self.numCards.isdigit() == True:
                 if 2 <= int(self.numCards) <= 8192:
-                    numCardsInput = True
+                    return False
                 else:
                     print(f"\nPlease provide an input [2 - 8192]: ")
                     continue
@@ -102,13 +99,12 @@ class UserInterface():
 
     def __print_card(self):
 
-        validInput = False
-        while validInput == False:
+        while True:
             cardID = input(f"ID of card to print [1 - {self.numCards}]: ")
             if cardID.isdigit() == True:
                 if 1 <= int(cardID) <= int(self.numCards):
-                    validInput = True
                     print(self.__m_currentDeck.card(cardID))
+                    return False
                 else:
                     print(f"\nPlease provide an input [1 - {self.numCards}]: ")
                     continue
@@ -119,15 +115,13 @@ class UserInterface():
 
 
     def __save_deck(self):
-        validInput = False
-        while validInput == False:
             fileName = input("Enter output file name: ")
             if fileName != '':
                 with open(fileName, 'x') as file:
                     file.write(str(self.__m_currentDeck))
                     print(f"Deck saved to '{fileName}'!")
-                    validInput = True
-                file.close()
+                    file.close()
+                    return False
             else:
                 print("Please provide a valid file name.\n")
         pass
